@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Farmacia</string>
+    <string name="app_name">Nearby Places</string>
+    <string name="title_activity_maps">Nearby Places</string>
 </resources>
