@@ -39,11 +39,11 @@ class NearbyPlacesData : AsyncTask<Any, String, String>() {
         for (i in 0 until nearbyPlacesList.size) {
             val markerOptions = MarkerOptions()
             val googlePlace = nearbyPlacesList[i]
-            val lat = java.lang.Double.parseDouble(googlePlace["lat"])
-            val lng = java.lang.Double.parseDouble(googlePlace["lng"])
+            val lat = googlePlace["lat"]
+            val lng = googlePlace["lng"]
             val placeName = googlePlace["place_name"]
             val vicinity = googlePlace["vicinity"]
-            val latLng = LatLng(lat, lng)
+            val latLng = LatLng(lat!!.toDouble(), lng!!.toDouble())
             markerOptions.position(latLng).title("$placeName").snippet("$vicinity")
             mMap.addMarker(markerOptions)
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
