@@ -29,7 +29,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     private lateinit var searchText: String
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-    private var polyline: Polyline? = null
 
     companion object {
         private const val PLACE_PICKER_REQUEST = 1
@@ -53,7 +52,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 val place = PlacePicker.getPlace(this, data)
-
                 placeMarkerOnMap(place)
             }
         }
@@ -81,7 +79,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     }
 
-    // Load place picker for more searchs
+    // Load place picker for more searches
     private fun loadPlacePicker() {
         val builder = PlacePicker.IntentBuilder()
         try {
@@ -108,7 +106,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     // Get the url and makes the request to directions endpoint.
     private fun getRoute(marker: Marker?) {
-        polyline?.remove()
         val currentLatLang = LatLng(lastLocation.latitude, lastLocation.longitude)
         val url = DownloadUrl().getDirectionsUrl(currentLatLang, marker?.position!!)
         DirectionsData().execute(mMap, url)
