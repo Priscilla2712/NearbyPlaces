@@ -48,7 +48,6 @@ class Parser {
         var vicinity = "-NA-"
         var latitude = ""
         var longitude = ""
-        var reference = ""
         try {
             if (!googlePlaceJson.isNull("name")) {
                 placeName = googlePlaceJson.getString("name")
@@ -58,12 +57,10 @@ class Parser {
             }
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat")
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng")
-            reference = googlePlaceJson.getString("reference")
             googlePlaceMap["place_name"] = placeName
             googlePlaceMap["vicinity"] = vicinity
             googlePlaceMap["lat"] = latitude
             googlePlaceMap["lng"] = longitude
-            googlePlaceMap["reference"] = reference
         } catch (e: JSONException) {
             e.printStackTrace()
         }
